@@ -9,7 +9,9 @@ const Home: NextPage = () => {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
 
   useEffect(() => {
-    log.info("hello data changed", hello.data);
+    hello?.data?.greeting
+      ? log.info("hello data changed", hello.data)
+      : log.error("no data received...");
   }, [hello]);
 
   return (
